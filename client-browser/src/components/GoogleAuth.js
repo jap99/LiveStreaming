@@ -19,17 +19,27 @@ class GoogleAuth extends React.Component {
     };
 
     onAuthChange = () => {      // it's an arrow fcn since it's a callback & we want its context bound to our component
-      this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+        this.setState({ isSignedIn: this.auth.isSignedIn.get() });
     }
 
     renderAuthButton() {
         if (this.state.isSignedIn === null) {
-            return <div> IDK </div>;
+            return null;
         } else if (this.state.isSignedIn) {
-            return <div> YES </div>
+            return (
+                <button className="ui red google button">
+                <i className="google icon" />
+                Sign Out
+                </button>
+            );
         } else {
-            return <div> NOPE </div>
-        };
+            return (
+                <button className="ui red google button">
+                <i className="google icon" />
+                Sign In with Google
+                </button>
+            );
+        }
     };
 
     render() {
