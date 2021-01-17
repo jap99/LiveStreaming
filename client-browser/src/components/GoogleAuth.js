@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
 
 class GoogleAuth extends React.Component {
   
@@ -18,15 +20,20 @@ class GoogleAuth extends React.Component {
         });
     };
 
-    onAuthChange = () => {      // it's an arrow fcn since it's a callback & we want its context bound to our component
-        this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+    // it's an arrow fcn since it's a callback & we want its context bound to our component
+    onAuthChange = (isSignedIn) => {      
+        if (isSignedIn) {
+            this.props.signIn();
+        } else {
+           this.props.signOut();
+        }    
     }
 
-    onSignIn = () => {
+    onSignInClick = () => {
         this.auth.signIn();
     };
 
-    onSignOut = () => {
+    onSignOutClick = () => {
         this.auth.signOut();
     };
 
@@ -36,14 +43,14 @@ class GoogleAuth extends React.Component {
         } else if (this.state.isSignedIn) {
             // no paranthesis on the onClick method names so they don't get invoked immediately when comp renders
             return (
-                <button onClick={this.onSignOut} className="ui red google button">
+                <button onClick={this.onSignOutClick} className="ui red google button">
                 <i className="google icon" />
                 Sign Out
                 </button>
             );
         } else {
             return (
-                <button onClick={this.onSignIn} className="ui red google button">
+                <button onClick={this.onSignInClick} className="ui red google button">
                 <i className="google icon" />
                 Sign In with Google
                 </button>
@@ -57,4 +64,4 @@ class GoogleAuth extends React.Component {
 
 };
 
-export default GoogleAuth;
+export default connect(null, { signIn, signOut })(GoogleAuth);
