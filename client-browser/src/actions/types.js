@@ -1,0 +1,4 @@
+// ALL THE TYPES USED IN OUR REDUCERS & ACTION CREATORS
+
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_OUT = 'SIGN_OUT';
