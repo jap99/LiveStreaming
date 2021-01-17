@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
 
 class GoogleAuth extends React.Component {
-  
-    state = { isSignedIn: null };
 
     componentDidMount() {
         // window is to ensure the variable is available in our window scope in our browser
@@ -14,7 +12,9 @@ class GoogleAuth extends React.Component {
                 scope: 'email'
             }).then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance();
-                this.setState({ isSignedIn: this.auth.isSignedIn.get() })
+                // dispatch an action when we finish init to indicate if user's signed in/out
+                // updates auth state in our redux store
+                this.onAuthChange(this.auth.isSignedIn.get());
                 this.auth.isSignedIn.listen(this.onAuthChange);
             });
         });
@@ -26,8 +26,8 @@ class GoogleAuth extends React.Component {
             this.props.signIn();
         } else {
            this.props.signOut();
-        }    
-    }
+        };
+    };
 
     onSignInClick = () => {
         this.auth.signIn();
@@ -38,9 +38,9 @@ class GoogleAuth extends React.Component {
     };
 
     renderAuthButton() {
-        if (this.state.isSignedIn === null) {
+        if (this.props.isSignedIn === null) {
             return null;
-        } else if (this.state.isSignedIn) {
+        } else if (this.props.isSignedIn) {
             // no paranthesis on the onClick method names so they don't get invoked immediately when comp renders
             return (
                 <button onClick={this.onSignOutClick} className="ui red google button">
@@ -64,4 +64,9 @@ class GoogleAuth extends React.Component {
 
 };
 
-export default connect(null, { signIn, signOut })(GoogleAuth);
+
+const mapStateToProps = (state) => {
+    return { isSignedIn: state.auth.isSignedIn }
+}
+
+export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
