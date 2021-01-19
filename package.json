@@ -1,0 +1,22 @@
+{
+  "name": "streams",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jap99/stream-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jap99/stream-react/issues"
+  },
+  "homepage": "https://github.com/jap99/stream-react#readme",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  }
+}
