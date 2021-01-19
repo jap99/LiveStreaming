@@ -1,5 +1,6 @@
 // ACTION CREATORS
 
+import streams from '../apis/streams';
 import { SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = (userID) => {
@@ -14,3 +15,12 @@ export const signOut = () => {
     type: SIGN_OUT
   };
 };
+
+export const createStream = formValues => async dispatch => {
+    streams.post('/streams', formValues); // makes request to our api server to create a new stream
+};
+// export const createStream = (formValues) => {
+//   return async (dispatch) => {
+//     streams.post('/streams', formValues);
+//   };
+// };
