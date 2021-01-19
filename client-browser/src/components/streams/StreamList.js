@@ -8,6 +8,12 @@ class StreamList extends React.Component {      // class based so we can call ac
     this.props.fetchStreams();  // calling the action creator (since we only want to fetch our streams 1 time)
   };
 
+  renderDeleteAndEditButtons(stream) {
+    if (stream.userID === this.props.currentUsersID) {
+      return <div>EDIT/DELETE</div>
+    }
+  };
+
   renderList() {
     return this.props.streams.map(stream => {
       return (
@@ -17,6 +23,7 @@ class StreamList extends React.Component {      // class based so we can call ac
             { stream.title }
             <div className="description"> {stream.description} </div>
           </div>
+          { this.renderDeleteAndEditButtons(stream) }
         </div>
       )
     })
@@ -37,7 +44,10 @@ class StreamList extends React.Component {      // class based so we can call ac
 
 const mapStateToProps = (state) => {
   // Object.values takes all the values of an object & puts them in an array
-  return { streams: Object.values(state.streams) }
+  return {  
+    streams: Object.values(state.streams),
+    currentUsersID: state.auth.userID
+  }
 };
 
 
