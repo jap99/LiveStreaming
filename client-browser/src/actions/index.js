@@ -24,8 +24,9 @@ export const signOut = () => {
   };
 };
 
-export const createStream = formValues => async dispatch => {
-    const res = await streams.post('/streams', formValues); // makes request to our api server to create a new stream
+export const createStream = formValues => async (dispatch, getState) => {
+    const { userID } = getState().auth;
+    const res = await streams.post('/streams', { ...formValues, userID });    
     // dispatch our action
     dispatch({ type: CREATE_STREAM, payload: res.data })
   };
@@ -34,7 +35,6 @@ export const createStream = formValues => async dispatch => {
 //     streams.post('/streams', formValues);
 //   };
 // };
-
 
 export const fetchStreams = () => async dispatch => {
   const res = await streams.get('/streams');
