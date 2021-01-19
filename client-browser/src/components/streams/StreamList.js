@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchStreams } from '../../actions';
 
 class StreamList extends React.Component {      // class based so we can call action creator in componentDidMount
@@ -34,17 +35,28 @@ class StreamList extends React.Component {      // class based so we can call ac
             <div className="description"> {stream.description} </div>
           </div>
         </div>
+      );
+    });
+  };
+
+  renderCreateButton() {
+    if (this.props.isSignedIn) {
+      return (
+        <div style={{ textAlign: 'right' }}>
+          <Link to="/streams/new" className="ui button primary">
+            Create Stream
+          </Link>
+        </div>
       )
-    })
-  }
+    };
+  };
 
   render() {
     return (
       <div>
         <h2>Streams</h2>
-        <div className="ui celled list">
-          { this.renderList() }
-        </div>
+        <div className="ui celled list"> { this.renderList() } </div>
+        { this.renderCreateButton() }
       </div>
     );
   };
@@ -55,8 +67,9 @@ const mapStateToProps = (state) => {
   // Object.values takes all the values of an object & puts them in an array
   return {  
     streams: Object.values(state.streams),
-    currentUsersID: state.auth.userID
-  }
+    currentUsersID: state.auth.userID,
+    isSignedIn: state.auth.isSignedIn
+  };
 };
 
 
