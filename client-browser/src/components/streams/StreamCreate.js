@@ -3,13 +3,24 @@ import { Field, reduxForm } from 'redux-form';  // reduxForm() is like connect()
 
 class StreamCreate extends React.Component {
 
-  renderInput({ input, label }) {
+  renderError({error, touched}) {
+    if (touched && error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      );
+    };
+  };
+
+  renderInput = ({ input, label, meta }) => {
     return (
       <div className="field">
         <label> { label } </label>
-        <input {...input} />
+        <input {...input} autoComplete="off" />
+        {this.renderError(meta)}
       </div>
-    )
+    );
   };
 
   onSubmit(formValues) {
@@ -28,9 +39,21 @@ class StreamCreate extends React.Component {
 
 };
 
+const validate = (formValues) => {    // formValues has all the values of our form 
+  const errors = {};
+  if (!formValues.title) {
+    errors.title = "You must enter a title";
+  } 
+  if (!formValues.description) {
+    errors.description = "You must enter a description";
+  }
+  return errors;
+};
+
 // reduxForm() makes sure we can call an action creator & get some form data into our component
 // reduxForm() returns a function (the 2nd function) & we immediately call that 2nd function w/ StreamCreate
 export default reduxForm({
-  form: 'streamCreate'
+  form: 'streamCreate',
+  validate
 })(StreamCreate);
 
