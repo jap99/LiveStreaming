@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import history from '../history';
 
 // Creating a portal
 // 1st argument is some JSX / what we want to show on the screen
@@ -9,7 +8,7 @@ import history from '../history';
 const Modal = props => {
   return ReactDOM.createPortal(
     <div
-      onClick={() => history.push('/')}
+      onClick={props.onDismiss}
       className="ui dimmer modals visible active"
     >
       <div
