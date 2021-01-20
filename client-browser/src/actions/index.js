@@ -49,9 +49,11 @@ export const fetchStream = (id) => async dispatch => {
   dispatch({ type: FETCH_STREAM, payload: res.data });
 };
 
+// form values are the new values to update the stream with
 export const editStream = (id, formValues) => async dispatch => {
   const res = await streams.put(`/streams/${id}`, formValues);
   dispatch({ type: EDIT_STREAM, payload: res.data });
+  history.push('/');
 };
 
 export const deleteStream = (id) => async dispatch => {
