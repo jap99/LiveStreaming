@@ -1,6 +1,7 @@
 // ACTION CREATORS
 
 import streams from '../apis/streams';
+import history from '../history';
 import { 
   SIGN_IN, 
   SIGN_OUT, 
@@ -30,6 +31,7 @@ export const createStream = formValues => async (dispatch, getState) => {
     // dispatch our action
     // Do some programmatic navigation to get  user back to root route (shows user the list of streams) 
     dispatch({ type: CREATE_STREAM, payload: res.data })
+    history.push('/');    // push is how we navigate a user around
   };
 // export const createStream = (formValues) => {
 //   return async (dispatch) => {
