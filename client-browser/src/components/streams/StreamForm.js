@@ -26,7 +26,8 @@ class StreamForm extends React.Component {
 
   onSubmit = (formValues) => {              // if the inputs are valid this onSubmit is invoked
     this.props.onSubmit(formValues)         // onSubmit calls the callback it was passed from a parent comp
-
+  };
+  
   render() { 
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
