@@ -1,4 +1,16 @@
 {
-    "streams": []
+  "streams": [
+    {
+      "title": "1st stream",
+      "description": "ello",
+      "userID": "102249659006894629742",
+      "id": 1
+    },
+    {
+      "title": "omid",
+      "description": "htis sdfadf",
+      "userID": "102249659006894629742",
+      "id": 2
+    }
+  ]
 }
-
