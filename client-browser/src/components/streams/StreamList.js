@@ -9,7 +9,7 @@ class StreamList extends React.Component {      // class based so we can call ac
     this.props.fetchStreams();  // calling the action creator (since we only want to fetch our streams 1 time)
   };
 
-  renderDeleteAndEditButtons(stream) {
+  renderDeleteAndEditButtons(stream) {  // TODO ------ this should probably be on server side so hackers can't delete other people's streams
     if (stream.userID === this.props.currentUsersID) {
       return (
         <div className="right floated content">
