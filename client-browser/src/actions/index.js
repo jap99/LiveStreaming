@@ -34,6 +34,7 @@ export const createStream = formValues => async (dispatch, getState) => {
     const res = await streams.post('/streams', { ...formValues, userID });    
     // dispatch our action
     // Do some programmatic navigation to get user back to root route (shows user the list of streams) 
+    // dispatch an action that has type CREATE_STREAM 
     dispatch({ type: CREATE_STREAM, payload: res.data })
     history.push('/');    // push is how we navigate a user around
   };
@@ -46,6 +47,7 @@ export const createStream = formValues => async (dispatch, getState) => {
 export const fetchStreams = () => async dispatch => {
   const res = await streams.get('/streams');
   dispatch({ type: FETCH_STREAMS, payload: res.data });
+  // don't pass the streams' creators userIDs back to the user
 };
 
 export const fetchStream = (id) => async dispatch => {
@@ -60,13 +62,15 @@ export const editStream = (id, formValues) => async dispatch => {
       we then dispatch it so it can be updated in the redux store to reflect the deleted stream. We need to 
       verify that the deletion in the api server AND in the redux store were successful; otherwise, make them 
       both unsuccessful so that it appears as if nothing at all even occurred.
+    ----- TODO ---- have server side code that checks whether the user attempting to edit is the correct owner of the stream
   */ 
   dispatch({ type: EDIT_STREAM, payload: res.data });
   history.push('/');
 };
 
 export const deleteStream = (id) => async dispatch => {
-  // ---- TODO --- have the api server confirm deletion was completed successfully & react accordingly ---- // 
+  // ---- TODO --- have the api server confirm deletion was completed successfully & react accordingly 
+  // ----- TODO ---- have server side code that checks whether the user attempting to edit is the correct owner of the stream
   await streams.delete(`/streams/${id}`);
   dispatch({ type: DELETE_STREAM, payload: id });
   history.push('/');
