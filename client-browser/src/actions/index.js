@@ -65,7 +65,7 @@ export const editStream = (id, formValues) => async dispatch => {
     ----- TODO ---- have server side code that checks whether the user attempting to edit is the correct owner of the stream
   */ 
   dispatch({ type: EDIT_STREAM, payload: res.data });
-  history.push('/');
+  history.push('/');      // The slash / in L34 is the route u want to navigate the user to
 };
 
 export const deleteStream = (id) => async dispatch => {
