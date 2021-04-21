@@ -14,17 +14,13 @@ class StreamCreate extends React.Component {
     return ( 
       <div>
         <h3>Create a Stream</h3>
-        <StreamForm onSubmit={this.onSubmit} />
+        <StreamForm onSubmit={ this.onSubmit } />
       </div>
     );
   };
-
 };
 
+export default connect(null, { createStream })(StreamCreate);
 
-// export default connect(null, { createStream })(StreamCreate);
 
-export default reduxForm({
-  form: 'streamCreate'
-})(StreamCreate);
 

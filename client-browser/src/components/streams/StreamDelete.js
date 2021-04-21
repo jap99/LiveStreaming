@@ -11,7 +11,7 @@ class StreamDelete extends React.Component {
     this.props.fetchStream(this.props.match.params.id);
   };
 
-  renderActions() {
+  renderModalActions() {
     const { id } = this.props.match.params;
     return (
       <React.Fragment>
@@ -40,7 +40,7 @@ class StreamDelete extends React.Component {
       <Modal
         title="Delete Stream"
         content={ this.renderModalText() }
-        actions={ this.renderActions() }
+        actions={ this.renderModalActions() }
         onDismiss={ () => history.push('/') }
       />
     );

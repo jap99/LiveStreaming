@@ -12,14 +12,9 @@ export default (state = {}, action) => {
         case CREATE_STREAM, EDIT_STREAM, FETCH_STREAM:
             return { ...state, [action.payload.id]: action.payload };
         case FETCH_STREAMS:
-            return { ...state, ..._.mapKeys(action.payload, 'id') }; 
-            /* _.mapKeys takes an array & creates a new dictionary out of it
-                         our api returns an array of dictionaries
-                         above, we take the id out of each dictionary that's in the array & 
-                         we use that id as the key for the new dictionary we'll be creating
-            */ 
+            return { ...state, ..._.mapKeys(action.payload, 'id') };            // _.mapKeys --- merge array into a dictionary  
         case DELETE_STREAM:
-            return _.omit(state, action.payload);
+            return _.omit(state, action.payload);    
         default:
             return state;
     }

@@ -22,7 +22,7 @@ class StreamEdit extends React.Component {
       <div>
         <h3>Edit a Stream</h3>
         <StreamForm 
-          initialValues={ _.pick(this.props.stream, 'title', 'description') }
+          initialValues={ _.pick(this.props.stream, 'title', 'description') } // title & description were set in StreamForm render's Field elements
           onSubmit={ this.onSubmit }/>
       </div>
     );
@@ -31,8 +31,8 @@ class StreamEdit extends React.Component {
 };
 
 // we want this function still so we can get initial values for the form
-const mapStateToProps = (state, ownProps) => {  // ownProps is the props that shows up in StreamEdit comp
-  return { stream: state.streams[ownProps.match.params.id] }
+const mapStateToProps = (state, ownProps) => {  // ownProps is a ref to the props that shows up in StreamEdit since it's rendered by a Route in App.js so we get the props from RR
+  return { stream: state.streams[ownProps.match.params.id] }  // take the streams from the redux store & find the stream we need to edit; then access it in StreamEdit as this.props.stream
 }
 
 export default connect(mapStateToProps, { fetchStream, editStream })(StreamEdit);
