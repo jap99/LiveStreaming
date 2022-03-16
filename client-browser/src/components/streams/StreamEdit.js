@@ -10,7 +10,7 @@ class StreamEdit extends React.Component {
     this.props.fetchStream(this.props.match.params.id)
   };
 
-  onSubmit = (formValues) => {  // this callback receives formValues from StreamForm
+  onSubmit = (formValues) => {  // receives formValues from StreamForm
     this.props.editStream(this.props.match.params.id, formValues);
   };
 
@@ -30,8 +30,8 @@ class StreamEdit extends React.Component {
 
 };
 
-// we want this function still so we can get initial values for the form
-const mapStateToProps = (state, ownProps) => {  // ownProps is the props that shows up in StreamEdit comp
+// gets initial values for the form:
+const mapStateToProps = (state, ownProps) => {  // ownProps are the props that show up in StreamEdit
   return { stream: state.streams[ownProps.match.params.id] }
 }
 
