@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchStreams } from '../../actions';
 
-class StreamList extends React.Component {      // class based so we can call action creator in componentDidMount
+class StreamList extends React.Component {    
 
   componentDidMount() {
-    this.props.fetchStreams();  // calling the action creator (since we only want to fetch our streams 1 time)
+    this.props.fetchStreams();  // calling the action creator (we only want to fetch our streams 1 time)
   };
 
-  renderDeleteAndEditButtons(stream) {  // TODO ------ this should probably be on server side so hackers can't delete other people's streams
+  renderDeleteAndEditButtons(stream) {  // TODO --- also add server side to prevents hackers modifying other people's streams
     if (stream.userID === this.props.currentUsersID) {
       return (
         <div className="right floated content">
@@ -68,7 +68,7 @@ class StreamList extends React.Component {      // class based so we can call ac
 };
 
 const mapStateToProps = (state) => {
-  // Object.values takes all the values of an object & puts them in an array
+  // Object.values puts an object's values in an array
   return {  
     streams: Object.values(state.streams),
     currentUsersID: state.auth.userID,
