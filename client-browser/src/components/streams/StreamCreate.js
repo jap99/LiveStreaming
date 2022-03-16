@@ -5,8 +5,8 @@ import StreamForm from './StreamForm';
 
 class StreamCreate extends React.Component {
 
-  onSubmit = (formValues) => {  // if the inputs are valid this onSubmit is invoked
-    this.props.createStream(formValues) // onSubmit calls our action creator createStream
+  onSubmit = (formValues) => {   
+    this.props.createStream(formValues)  
   };
 
   render() { 
