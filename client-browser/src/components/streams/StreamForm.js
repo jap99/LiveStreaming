@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';  // reduxForm() is like connect()
+import { Field, reduxForm } from 'redux-form';  // reduxForm() is similar to connect()
 
 class StreamForm extends React.Component {
 
@@ -24,8 +24,8 @@ class StreamForm extends React.Component {
     );
   };
 
-  onSubmit = (formValues) => {              // if the inputs are valid this onSubmit is invoked
-    this.props.onSubmit(formValues)         // onSubmit calls the callback it was passed from a parent comp
+  onSubmit = (formValues) => {              
+    this.props.onSubmit(formValues)     // onSubmit invokes the callback the parent comp passed
   };
 
   render() { 
