@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/jap99/stream-react#readme",
   "dependencies": {
-    "json-server": "^0.16.3"
+    "json-server": "^0.17.1"
   }
 }
